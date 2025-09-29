@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name" translatable="false">Laboratorio6</string>
+    <string name="front" translatable="false">Front</string>
+    <string name="back" translatable="false">Back</string>
+    <string name="front_shiny" translatable="false">Front Shiny</string>
+    <string name="back_shiny" translatable="false">Back Shiny</string>
+</resources>
