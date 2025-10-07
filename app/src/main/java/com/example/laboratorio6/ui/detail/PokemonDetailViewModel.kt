@@ -2,11 +2,11 @@ package com.example.laboratorio6.ui.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.laboratorio6.data.model.PokemonDetail
+import com.example.laboratorio6.data.repository.MainRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import com.example.laboratorio6.data.PokemonRepository
-import com.example.laboratorio6.data.model.PokemonDetail
 
 data class PokemonDetailState(
     val loading: Boolean = false,
@@ -15,7 +15,7 @@ data class PokemonDetailState(
 )
 
 class PokemonDetailViewModel(
-    private val repo: PokemonRepository = PokemonRepository()
+    private val repo: MainRepository = MainRepository()
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(PokemonDetailState())

@@ -1,12 +1,12 @@
-package com.example.laboratorio6.data
+package com.example.laboratorio6.data.repository
 
 import com.example.laboratorio6.data.model.NamedApiResource
 import com.example.laboratorio6.data.model.PokemonDetail
-import com.example.laboratorio6.data.remote.ApiClient
-import com.example.laboratorio6.data.remote.PokeApi
+import com.example.laboratorio6.data.remote.ApiService
+import com.example.laboratorio6.data.remote.RetrofitClient
 
-class PokemonRepository(
-    private val api: PokeApi = ApiClient.api
+class MainRepository(
+    private val api: ApiService = RetrofitClient.api
 ) {
     suspend fun getFirst100(): List<NamedApiResource> =
         api.getPokemonList(limit = 100).results

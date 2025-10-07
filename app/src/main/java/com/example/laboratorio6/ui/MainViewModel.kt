@@ -1,12 +1,12 @@
-package com.example.laboratorio6.ui.list
+package com.example.laboratorio6.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.laboratorio6.data.model.NamedApiResource
+import com.example.laboratorio6.data.repository.MainRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import com.example.laboratorio6.data.PokemonRepository
-import com.example.laboratorio6.data.model.NamedApiResource
 
 data class PokemonListState(
     val loading: Boolean = false,
@@ -14,8 +14,8 @@ data class PokemonListState(
     val error: String? = null
 )
 
-class PokemonListViewModel(
-    private val repo: PokemonRepository = PokemonRepository()
+class MainViewModel(
+    private val repo: MainRepository = MainRepository()
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(PokemonListState(loading = true))

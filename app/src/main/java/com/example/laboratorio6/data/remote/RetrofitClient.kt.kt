@@ -8,29 +8,31 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-object ApiClient {
+object RetrofitClient {
     private const val BASE_URL = "https://pokeapi.co/api/v2/"
 
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BASIC
     }
 
-    private val okHttp = OkHttpClient.Builder()
-        .addInterceptor(logging)
-        .connectTimeout(20, TimeUnit.SECONDS)
-        .readTimeout(20, TimeUnit.SECONDS)
-        .build()
+    private val okHttp: OkHttpClient by lazy {
+        OkHttpClient.Builder()
+            .addInterceptor(logging)
+            .connectTimeout(20, TimeUnit.SECONDS)
+            .readTimeout(20, TimeUnit.SECONDS)
+            .build()
+    }
 
-    private val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
+    private val moshi: Moshi by lazy {
+        Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+    }
 
-    val api: PokeApi by lazy {
+    val api: ApiService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttp)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
-            .create(PokeApi::class.java)
+            .create(ApiService::class.java)
     }
 }
