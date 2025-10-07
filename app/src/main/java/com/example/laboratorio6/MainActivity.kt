@@ -21,13 +21,10 @@ class MainActivity : ComponentActivity() {
             Laboratorio6Theme {
                 Surface(color = MaterialTheme.colorScheme.background) {
                     val nav = rememberNavController()
-
                     NavHost(navController = nav, startDestination = Routes.LIST) {
                         composable(Routes.LIST) {
                             PokemonListScreen(
-                                onOpenDetail = { id: Int, name: String ->
-                                    nav.navigate(Routes.detailOf(id, name))
-                                }
+                                onOpenDetail = { id, name -> nav.navigate(Routes.detailOf(id, name)) }
                             )
                         }
                         composable(
@@ -39,12 +36,7 @@ class MainActivity : ComponentActivity() {
                         ) { backStack ->
                             val id = backStack.arguments?.getInt("id") ?: 1
                             val name = backStack.arguments?.getString("name").orEmpty()
-
-                            PokemonDetailScreen(
-                                id = id,
-                                name = name,
-                                onBack = { nav.popBackStack() }   // <- NOMBRADO
-                            )
+                            PokemonDetailScreen(id = id, name = name, onBack = { nav.popBackStack() })
                         }
                     }
                 }
