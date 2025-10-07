@@ -11,6 +11,6 @@ data class NamedApiResource(
     val name: String,
     val url: String
 ) {
-    // https://pokeapi.co/api/v2/pokemon/132/ -> 132
+
     val id: Int get() = url.trimEnd('/').substringAfterLast('/').toInt()
 }
